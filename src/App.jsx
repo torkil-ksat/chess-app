@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import Board from './components/Board'
+import { useState } from "react";
+import Board from "./components/Board";
+import Player from "./components/Player";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div id='main'>
-      <Board/>
+    <div id="main">
+      <Player player={"player1"} />
+      <Board />
+      <Player player={"player2"} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
