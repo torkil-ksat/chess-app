@@ -8,6 +8,9 @@
   display: flex;
   justify-content: space-between;
   .player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     .player-name {
       font-weight: bold;
     }

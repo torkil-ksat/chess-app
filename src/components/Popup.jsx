@@ -5,6 +5,9 @@ function Popup({
   setShowPopup: setShowPopup,
   startingConfig: startingConfig,
   setBoard: setBoard,
+  player: player,
+  score: score,
+  setScore: setScore,
 }) {
   function newGame() {
     setBoard(startingConfig);
@@ -12,6 +15,15 @@ function Popup({
   }
   function refreshPage() {
     window.location.reload(true);
+  }
+  function addWin(target) {
+    let newScore = score;
+    if (target === "player1") {
+      newScore[0] += 1;
+    } else {
+      newScore[1] += 1;
+    }
+    setScore(score);
   }
 
   return (
@@ -50,6 +62,17 @@ function Popup({
               }}
             >
               🧨
+            </button>
+          </div>
+          <div className="popup-option">
+            <p>give me a win: </p>
+            <button
+              onClick={() => {
+                addWin(player);
+                setShowPopup(false);
+              }}
+            >
+              🏆
             </button>
           </div>
         </div>

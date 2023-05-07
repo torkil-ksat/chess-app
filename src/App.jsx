@@ -18,6 +18,8 @@ function App() {
   const [board, setBoard] = useState(startingConfig);
   const [showPopup, setShowPopup] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
+  const [score, setScore] = useState([0, 0]);
+  const [playerPopup, setPlayerPopup] = useState();
 
   useEffect(() => {
     const handleOrientationChange = (e) => {
@@ -35,15 +37,28 @@ function App() {
 
   return (
     <div id="main" className={isLandscape ? "landscape" : "portrait"}>
-      <Player player={"player1"} setShowPopup={setShowPopup} />
+      <Player
+        player={"player1"}
+        setShowPopup={setShowPopup}
+        wins={score[0]}
+        setPlayerPopup={setPlayerPopup}
+      />
       <Board board={board} setBoard={setBoard} />
-      <Player player={"player2"} setShowPopup={setShowPopup} />
+      <Player
+        player={"player2"}
+        setShowPopup={setShowPopup}
+        wins={score[1]}
+        setPlayerPopup={setPlayerPopup}
+      />
       {showPopup && (
         <Popup
           type={"menu"}
           setShowPopup={setShowPopup}
           startingConfig={startingConfig}
           setBoard={setBoard}
+          player={playerPopup}
+          score={score}
+          setScore={setScore}
         />
       )}
     </div>
