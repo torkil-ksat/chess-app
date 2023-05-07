@@ -1,5 +1,8 @@
 .piece {
   pointer-events: none;
+  &.player1 {
+    transform: rotateZ(180deg);
+  }
   &.player1 svg path {
     fill: $chess-black;
   }

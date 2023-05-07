@@ -32,14 +32,17 @@ function Board({ board: board, setBoard: setBoard }) {
   const handleTileClick = (event) => {
     const tile = event.target;
     if (!selecting) {
-      //TODO: check if there is a piece there, and what piece
-      setSelecting(true);
-      tile.classList.add("selected");
       const coordC = tile.getAttribute("data-coordc");
       const coordY = tile.getAttribute("data-coordy");
-      console.log(`Selected tile: [${coordC}, ${coordY}]`);
-      setSelected([coordC, coordY]);
-      // TODO: Probably use a UseEffect here to add classes?
+      const selectedPiece = board[coordY][coordC];
+      if (selectedPiece !== 0) {
+        //TODO: check if there is a piece there, and what piece
+        setSelecting(true);
+        tile.classList.add("selected");
+        console.log(`Selected tile: [${coordC}, ${coordY}]`);
+        setSelected([coordC, coordY]);
+        // TODO: Probably use a UseEffect here to add classes?
+      }
     } else {
       let tempBoard = board;
       const coordC = tile.getAttribute("data-coordc");
