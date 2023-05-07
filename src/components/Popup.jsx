@@ -24,6 +24,7 @@ function Popup({
       newScore[1] += 1;
     }
     setScore(score);
+    setShowPopup(false);
   }
 
   return (
@@ -40,6 +41,12 @@ function Popup({
           </button>
         </div>
         <div className="popup-body">
+          <div className="popup-message">
+            <p>
+              made for iPhone (&quot;add to Home Screen&quot; for best
+              experience)
+            </p>
+          </div>
           <div className="popup-option">
             <p>start new game: </p>
             <button
@@ -69,7 +76,6 @@ function Popup({
             <button
               onClick={() => {
                 addWin(player);
-                setShowPopup(false);
               }}
             >
               🏆

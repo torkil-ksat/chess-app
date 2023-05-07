@@ -1,6 +1,8 @@
 #popup {
   &.inverted {
-    transform: rotateZ(180deg);
+    @media only screen and (max-width: $width-invert-break) {
+      transform: rotateZ(180deg);
+    }
   }
   position: absolute;
   display: flex;
@@ -38,6 +40,22 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      .popup-message {
+        p {
+          font-style: italic;
+          position: relative;
+          padding-bottom: 2rem;
+          &::after {
+            content: "";
+            width: 40%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            border-bottom: 1px solid $text-color;
+          }
+        }
+      }
       .popup-option {
         display: flex;
         gap: 2rem;

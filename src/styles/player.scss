@@ -28,7 +28,9 @@
   }
   &.player1 {
     grid-area: player1;
-    transform: rotateZ(180deg);
+    @media only screen and (max-width: $width-invert-break) {
+      transform: rotateZ(180deg);
+    }
   }
   &.player2 {
     grid-area: player2;

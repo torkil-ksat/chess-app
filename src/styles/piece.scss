@@ -2,7 +2,9 @@
   cursor: pointer;
   pointer-events: none;
   &.player1 {
-    transform: rotateZ(180deg);
+    @media only screen and (max-width: $width-invert-break) {
+      transform: rotateZ(180deg);
+    }
   }
   &.player1 svg path {
     fill: $chess-black;
