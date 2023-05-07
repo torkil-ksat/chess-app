@@ -27,7 +27,7 @@ function Popup({
   }
 
   return (
-    <div id="popup">
+    <div id="popup" className={player === "player1" ? "inverted" : ""}>
       <div className="popup-container">
         <div className="popup-title">
           <h2>menu</h2>

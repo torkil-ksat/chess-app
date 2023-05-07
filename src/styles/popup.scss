@@ -1,4 +1,7 @@
 #popup {
+  &.inverted {
+    transform: rotateZ(180deg);
+  }
   position: absolute;
   display: flex;
   width: 100%;
