@@ -1,15 +1,24 @@
 import React from "react";
 
-function Popup({ type: type, setShowPopup: setShowPopup }) {
+function Popup({
+  type: type,
+  setShowPopup: setShowPopup,
+  startingConfig: startingConfig,
+  setBoard: setBoard,
+}) {
   function newGame() {
-    window.location.reload(false);
+    setBoard(startingConfig);
+    setShowPopup(false);
+  }
+  function refreshPage() {
+    window.location.reload(true);
   }
 
   return (
     <div id="popup">
       <div className="popup-container">
         <div className="popup-title">
-          <h2>Menu</h2>
+          <h2>menu</h2>
           <button
             onClick={() => {
               setShowPopup(false);
@@ -32,6 +41,16 @@ function Popup({ type: type, setShowPopup: setShowPopup }) {
           <div className="popup-option">
             <p>undo last move (doesn't work yet): </p>
             <button>↩️</button>
+          </div>
+          <div className="popup-option">
+            <p>refresh page: </p>
+            <button
+              onClick={() => {
+                refreshPage();
+              }}
+            >
+              🧨
+            </button>
           </div>
         </div>
       </div>

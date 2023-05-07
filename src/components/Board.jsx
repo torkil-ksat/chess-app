@@ -32,28 +32,41 @@ function Board({ board: board, setBoard: setBoard }) {
   const handleTileClick = (event) => {
     const tile = event.target;
     if (!selecting) {
+      // Selecting piece to move
       const coordC = tile.getAttribute("data-coordc");
       const coordY = tile.getAttribute("data-coordy");
       const selectedPiece = board[coordY][coordC];
       if (selectedPiece !== 0) {
-        //TODO: check if there is a piece there, and what piece
         setSelecting(true);
         tile.classList.add("selected");
-        console.log(`Selected tile: [${coordC}, ${coordY}]`);
         setSelected([coordC, coordY]);
-        // TODO: Probably use a UseEffect here to add classes?
+        const selectedPiece = board[coordY][coordC];
+
+        console.log(`Selected tile: [${coordC}, ${coordY}], ${selectedPiece}`);
       }
     } else {
+      // Choosing move finish spot
       let tempBoard = board;
       const coordC = tile.getAttribute("data-coordc");
       const coordY = tile.getAttribute("data-coordy");
       const selectedPiece = board[selected[1]][selected[0]];
+      const targetPiece = board[coordY][coordC];
+      const activePiecePlayer =
+        selectedPiece > 0 ? "player1" : selectedPiece < 0 ? "player2" : "none";
+      const targetPiecePlayer =
+        targetPiece > 0 ? "player1" : targetPiece < 0 ? "player2" : "none";
 
-      console.log("board piece: ", selectedPiece);
-      tempBoard[coordY][coordC] = selectedPiece;
-      tempBoard[selected[1]][selected[0]] = 0;
+      if (selected[0] === coordC && selected[1] === coordY) {
+        console.warn("Selected same piece.");
+      } else if (activePiecePlayer === targetPiecePlayer) {
+        console.warn("Target piece is from the same side.");
+      } else {
+        // replace target spot with original piece
+        tempBoard[coordY][coordC] = selectedPiece;
+        tempBoard[selected[1]][selected[0]] = 0;
 
-      console.log(`Moving to: [${coordC}, ${coordY}]`);
+        console.log(`Moving to: [${coordC}, ${coordY}]`);
+      }
       document.querySelector(".selected").classList.remove("selected");
       setSelecting(false);
     }

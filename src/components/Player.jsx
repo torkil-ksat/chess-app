@@ -5,7 +5,7 @@ function Player({ player: player, setShowPopup: setShowPopup }) {
     <div className={"player-card " + player}>
       <div className="player-info">
         <p className="player-name">
-          {player === "player1" ? "🔥 Player 1" : "😍 Player 2"}
+          {player === "player1" ? "🔥 player 1" : "😍 player 2"}
         </p>
       </div>
       <div className="sidebar">
