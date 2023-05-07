@@ -1,0 +1,8 @@
+.piece {
+    &.player1 svg path{
+        fill: $chess-black;
+    }
+    &.player2 svg path{
+        fill: $chess-white;
+    }
+}

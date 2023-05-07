@@ -12,12 +12,12 @@
     .tile {
       height: 100%;
       width: 100%;
-      cursor: pointer;
+      padding: 5px;
       &.white {
-        background: $chess-white;
+        background: $tile-white;
       }
       &.black {
-        background: $chess-black;
+        background: $tile-black;
       }
       &:hover,
       &:active {
