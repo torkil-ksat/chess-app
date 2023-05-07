@@ -44,7 +44,7 @@ function Player({
     <div className={"player-card " + player}>
       <div className="player-info">
         <p className="player-name">
-          {player === "player1" ? "🔥 player 1" : "😍 player 2"}
+          {player === "player1" ? "🥳 player 1" : "😍 player 2"}
         </p>
         <p className="player-wins">wins: {winsEmoji}</p>
       </div>
