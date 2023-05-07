@@ -1,4 +1,5 @@
 .piece {
+  cursor: pointer;
   pointer-events: none;
   &.player1 {
     transform: rotateZ(180deg);
