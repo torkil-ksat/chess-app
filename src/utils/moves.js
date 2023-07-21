@@ -209,8 +209,6 @@ export function checkMove(selectedString, targetString, piece, board) {
             break;
     }
 
-    if (!allowed) console.warn('Move is not allowed!');
-
     return allowed;
 }
 

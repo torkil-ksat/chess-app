@@ -4,7 +4,7 @@ import Piece from './Piece';
 
 import { function1, checkMove } from '../utils/moves';
 
-function Board({ board: board, setBoard: setBoard }) {
+function Board({ board, setBoard, setWarnings, warnings }) {
     const squares = [];
     const [selected, setSelected] = useState([]);
     const [possibleMoves, setPossibleMoves] = useState([]);
@@ -33,6 +33,7 @@ function Board({ board: board, setBoard: setBoard }) {
 
     const handleTileClick = (event) => {
         const tile = event.target;
+        resetWarnings();
         if (!selecting) {
             // Selecting piece to move
             const coordC = tile.getAttribute('data-coordc');
@@ -69,13 +70,17 @@ function Board({ board: board, setBoard: setBoard }) {
                     : 'none';
 
             if (selected[0] === coordC && selected[1] === coordY) {
-                console.warn('Selected same piece.');
+                console.warn('Selected same piece!');
+                warn(activePiecePlayer, 'Selected same piece!');
             } else if (activePiecePlayer === targetPiecePlayer) {
-                console.warn('Target piece is from the same side.');
+                console.warn('Target piece is on your side!');
+                warn(activePiecePlayer, 'Target piece is on your side!');
             } else if (
                 !checkMove(selected, [coordC, coordY], selectedPiece, board)
             ) {
-                return;
+                console.warn('Move is not allowed!');
+                warn(activePiecePlayer, 'Move is not allowed!');
+                // return;
             } else {
                 // replace target spot with original piece
                 tempBoard[coordY][coordC] = selectedPiece;
@@ -86,6 +91,19 @@ function Board({ board: board, setBoard: setBoard }) {
             document.querySelector('.selected').classList.remove('selected');
             setSelecting(false);
         }
+    };
+
+    const warn = (player, warning) => {
+        if (player === 'player1') {
+            setWarnings([warning, warnings[1]]);
+        }
+        if (player === 'player2') {
+            setWarnings([warnings[0], warning]);
+        }
+    };
+
+    const resetWarnings = () => {
+        setWarnings(['', '']);
     };
 
     return (
