@@ -21,6 +21,7 @@ function App() {
     const [score, setScore] = useState([0, 0]);
     const [playerPopup, setPlayerPopup] = useState();
     const [warnings, setWarnings] = useState(['', '']);
+    const [deadPieces, setDeadPieces] = useState([[], []]);
     useEffect(() => {
         const handleOrientationChange = (e) => {
             setIsLandscape(e.matches);
@@ -43,12 +44,15 @@ function App() {
                 wins={score[0]}
                 setPlayerPopup={setPlayerPopup}
                 warning={warnings[0]}
+                deadPieces={deadPieces[1]}
             />
             <Board
                 board={board}
                 setBoard={setBoard}
                 warnings={warnings}
                 setWarnings={setWarnings}
+                deadPieces={deadPieces}
+                setDeadPieces={setDeadPieces}
             />
             <Player
                 player={'player2'}
@@ -56,6 +60,7 @@ function App() {
                 wins={score[1]}
                 setPlayerPopup={setPlayerPopup}
                 warning={warnings[1]}
+                deadPieces={deadPieces[0]}
             />
             {showPopup && (
                 <Popup
@@ -66,6 +71,7 @@ function App() {
                     player={playerPopup}
                     score={score}
                     setScore={setScore}
+                    setDeadPieces={setDeadPieces}
                 />
             )}
         </div>

@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { ReactComponent as Pawn } from '../assets/pawn.svg';
 import Piece from './Piece';
 
-import { function1, checkMove } from '../utils/moves';
+import { checkMove } from '../utils/moves';
 
-function Board({ board, setBoard, setWarnings, warnings }) {
+function Board({
+    board,
+    setBoard,
+    setWarnings,
+    warnings,
+    deadPieces,
+    setDeadPieces,
+}) {
     const squares = [];
     const [selected, setSelected] = useState([]);
     const [possibleMoves, setPossibleMoves] = useState([]);
@@ -80,11 +86,16 @@ function Board({ board, setBoard, setWarnings, warnings }) {
             ) {
                 console.warn('Move is not allowed!');
                 warn(activePiecePlayer, 'Move is not allowed!');
-                // return;
             } else {
                 // replace target spot with original piece
                 tempBoard[coordY][coordC] = selectedPiece;
                 tempBoard[selected[1]][selected[0]] = 0;
+
+                if (targetPiece !== 0)
+                    killPiece(
+                        targetPiecePlayer,
+                        Math.abs(parseInt(targetPiece))
+                    );
 
                 // console.log(`Moving to: [${coordC}, ${coordY}]`);
             }
@@ -104,6 +115,19 @@ function Board({ board, setBoard, setWarnings, warnings }) {
 
     const resetWarnings = () => {
         setWarnings(['', '']);
+    };
+
+    const killPiece = (player, piece) => {
+        if (player === 'player1') {
+            let newDeadPieces = deadPieces[0];
+            newDeadPieces.push(piece);
+            setDeadPieces([newDeadPieces, deadPieces[1]]);
+        }
+        if (player === 'player2') {
+            let newDeadPieces = deadPieces[1];
+            newDeadPieces.push(piece);
+            setDeadPieces([deadPieces[0], newDeadPieces]);
+        }
     };
 
     return (

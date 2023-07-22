@@ -1,7 +1,14 @@
 import React from 'react';
 import Piece from './Piece';
 
-function Player({ player, setShowPopup, wins, setPlayerPopup, warning }) {
+function Player({
+    player,
+    setShowPopup,
+    wins,
+    setPlayerPopup,
+    warning,
+    deadPieces,
+}) {
     let winsEmoji;
     switch (wins) {
         case 0:
@@ -57,18 +64,17 @@ function Player({ player, setShowPopup, wins, setPlayerPopup, warning }) {
                     📖
                 </button>
                 <div className="pieces">
-                    <Piece
-                        piece={1}
-                        player={player === 'player1' ? 'player2' : 'player1'}
-                    />
-                    <Piece
-                        piece={1}
-                        player={player === 'player1' ? 'player2' : 'player1'}
-                    />
-                    <Piece
-                        piece={2}
-                        player={player === 'player1' ? 'player2' : 'player1'}
-                    />
+                    {deadPieces.map((piece, i) => {
+                        return (
+                            <Piece
+                                piece={piece}
+                                key={i}
+                                player={
+                                    player === 'player1' ? 'player2' : 'player1'
+                                }
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>
