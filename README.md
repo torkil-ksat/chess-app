@@ -5,7 +5,7 @@ Very simple 2-player chess app.
 # How to use
 
 This is made to be run on mobile phones (tested primarly on iPhone) as a standalone web app. 
-Go to [chess.hadri1.com] on iPhone, press the "Share" button and "Add to Homescreen" (Try equivalent on Android, may work just fine).
+Go to [chess.hadri1.com](https://chess.hadri1.com/) on iPhone, press the "Share" button and "Add to Homescreen" (Try equivalent on Android, may work just fine).
 
 # Features
 
