@@ -13,7 +13,7 @@ function App() {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [-1, -1, -1, -1, -1, -1, -1, -1],
-        [-2, -4, -3, -5, -6, -3, -4, -2],
+        [-2, -4, -3, -6, -5, -3, -4, -2],
     ];
     const [board, setBoard] = useState(startingConfig);
     const [showPopup, setShowPopup] = useState(false);
